@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			/** 统计给定字符串中某个特定字符的出现次数。*/
+
+			function charCount(str, char) {
+				//巧妙运用了split方法
+				return str.split(char).length - 1;
+			}
+
+			/** 找出字符串中出现频率最高的字符 */
+			function mostFrequentChar(str) {
+				let maxChar = "";
+				let maxCount = 0;
+				let freq = {};
+				// 一次循环，就解决了，不需要要先算出次数，再找最大值
+				for (const char of str) {
+					freq[char] = (freq[char] || 0) + 1;
+					if (freq[char] > maxCount) {
+						maxCount = freq[char];
+						maxChar = char;
+					}
+				}
+				return maxChar;
+			}
+
+			/* 重复字符串方法 */
+			function repeat(str, n) {
+				// 前面运用了Array构造函数和join方法，不用循环，太棒了
+				return new Array(n + 1).join(str);
+			}
+
+			// 比较两个字符串是否具有相同的char和相同的个数
+			function isAragrams(s1, s2) {
+				if (s1.length !== s2.length) {
+					return false;
+				}
+				// 这个sort用的，你就说厉不厉害吧， 简直无敌
+				return s1.split(/(?:)/u).sort().join("") === s2.split(/(?:)/u).sort().join("");
+			}
+
+		</script>
+	</body>
+</html>
